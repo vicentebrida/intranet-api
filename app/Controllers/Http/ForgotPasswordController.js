@@ -1,7 +1,6 @@
-'use strict'
-
 const { randomBytes } = require('crypto');
 const { promisify } = require('util');
+
 const Mail = use('Mail');
 const Env = use('Env');
 
@@ -24,13 +23,17 @@ class ForgotPasswordController {
 
     const resetPasswordUrl = `${Env.get('FRONT_URL')}/reset?token=${token}`;
 
-    await Mail.send('emails.forgotpassword', { nome: user.nome, resetPasswordUrl }, (message) => {
-      message
-        .to(user.email)
-        .from('email@email.com.br')
-        .subject('Grape - Recuperação de senha')
-    })
+    await Mail.send(
+      'emails.forgotpassword',
+      { nome: user.nome, resetPasswordUrl },
+      message => {
+        message
+          .to(user.email)
+          .from('email@email.com.br')
+          .subject('Grape - Recuperação de senha');
+      }
+    );
   }
 }
 
-module.exports = ForgotPasswordController
+module.exports = ForgotPasswordController;
