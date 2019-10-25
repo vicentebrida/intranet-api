@@ -29,3 +29,11 @@ Factory.blueprint('App/Models/Token', (faker, i, data = {}) => {
     ...data,
   };
 });
+
+Factory.blueprint('App/Models/Sujeito', (faker, i, data = {}) => {
+  return {
+    nome: faker.sentence({ words: 6 }),
+    nascimento: faker.date({ format: 'YYYY-MM-DD' }),
+    ...data,
+  };
+});
