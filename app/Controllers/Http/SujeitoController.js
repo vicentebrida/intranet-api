@@ -17,7 +17,15 @@ class SujeitoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index({ request, response, view }) {}
+  async index({ request, response, view }) {
+    const sujeitos = await Sujeito.query()
+      .with('user', builder => {
+        builder.select(['id', 'nome_guerra', 'avatar']);
+      })
+      .fetch();
+
+    return sujeitos;
+  }
 
   /**
    * Create/save a new sujeito.
@@ -53,7 +61,15 @@ class SujeitoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show({ params, request, response, view }) {}
+  async show({ params, request, response, view }) {
+    const sujeito = await Sujeito.find(params.id);
+
+    await sujeito.load('user', builder => {
+      builder.select(['id', 'nome_guerra', 'avatar']);
+    });
+
+    return sujeito;
+  }
 
   /**
    * Update sujeito details.
@@ -63,7 +79,26 @@ class SujeitoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update({ params, request, response }) {}
+  async update({ params, request, response }) {
+    const data = request.only([
+      'nome',
+      'rg',
+      'rg_uf',
+      'cpf',
+      'nascimento',
+      'nome_mae',
+      'nome_pai',
+      'user_id',
+    ]);
+
+    const sujeito = await Sujeito.find(params.id);
+
+    sujeito.merge();
+
+    await sujeito.save();
+
+    return sujeito;
+  }
 
   /**
    * Delete a sujeito with id.
@@ -73,7 +108,11 @@ class SujeitoController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy({ params, request, response }) {}
+  async destroy({ params, request, response }) {
+    const sujeito = await Sujeito.find(params.id);
+
+    await sujeito.delete();
+  }
 }
 
 module.exports = SujeitoController;

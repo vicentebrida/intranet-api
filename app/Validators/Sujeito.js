@@ -10,7 +10,7 @@ class Sujeito {
     return {
       nome: [rule('required')],
       nascimento: [rule('required')],
-      user_id: [rule('required'), rule('exists', ['users', 'id'])],
+      user_id: [rule('exists', ['users', 'id'])],
     };
   }
 

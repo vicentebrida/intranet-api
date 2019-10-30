@@ -18,6 +18,7 @@
   "ends_with": "The {{field}} should end with given letters ({{argument}}).",
   "equals": "The {{field}} should equal {{argument.0}}.",
   "exists": "The {{field}} should exists in table {{argument.0}}.",
+  "file": "The {{field}} should contain a file",
   "in": "The {{field}} should fall within defined values of ({{argument}}).",
   "includes": "The {{field}} should include define letters ({{argument}}).",
   "integer": "The {{field}} should be an INTEGER.",
@@ -44,5 +45,8 @@
   "string": "The {{field}} should be a STRING.",
   "under": "The {{field}} should be under {{argument.0}}.",
   "unique": "The {{field}} has already been taken by someone else.",
-  "url": "The {{field}} should be a valid URL."
+  "url": "The {{field}} should be a valid URL.",
+  "file_ext": "The {{field}} should match one of these extensions ({{argument}})",
+  "file_size": "The {{field}} should contain a file",
+  "file_types": "The {{field}} should be a {{argument}}"
 }
