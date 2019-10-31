@@ -93,7 +93,7 @@ class SujeitoController {
 
     const sujeito = await Sujeito.find(params.id);
 
-    sujeito.merge();
+    sujeito.merge(data);
 
     await sujeito.save();
 

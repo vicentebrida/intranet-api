@@ -75,8 +75,6 @@ test('it should be able to update a sujeitos', async ({ assert, client }) => {
     nome: 'Old name',
   });
 
-  await user.sujeitos().save(sujeito);
-
   const response = await client
     .put(`/sujeitos/${sujeito.id}`)
     .loginVia(user, 'jwt')
