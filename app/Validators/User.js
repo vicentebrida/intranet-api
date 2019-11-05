@@ -10,7 +10,7 @@ class User {
     return {
       nome: [rule('required')],
       nome_guerra: [rule('required')],
-      email: [rule('required'), rule('email'), rule('unique')],
+      email: [rule('required'), rule('email'), rule('unique', ['users'])],
     };
   }
 
